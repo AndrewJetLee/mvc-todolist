@@ -9,5 +9,13 @@ module.exports = {
         } catch (err) {
             res.status(400).send(err);
         }
-    }
+    }, 
+    createTodo: async (req, res) => {
+        try {   
+            let createdTodo = await Todo.create(req.body);
+            res.status(200).redirect("/todos");
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    } 
 }
