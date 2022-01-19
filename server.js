@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const PORT = process.env.PORT || 8000;
 const connectToDb = require("./config/database");
+const homeRouter = require("./routes/home");
+const todoRouter = require("./routes/todos");
 
 // initialize server
 const app = express();
@@ -11,14 +13,15 @@ connectToDb();
 
 
 // middleware
+app.use(express.static("public"));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // routes
-app.get("/", (req, res) => {
-    res.send("GIgiigigty")
-})
+app.use("/", homeRouter);
+app.use("/todos", todoRouter);
+
 
 // listen
 async function startServer() {
