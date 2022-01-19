@@ -2,10 +2,13 @@ require('dotenv').config({path: "./config/.env"})
 const express = require("express");
 const cors = require("cors");
 const PORT = process.env.PORT || 8000;
-
+const connectToDb = require("./config/database");
 
 // initialize server
 const app = express();
+
+connectToDb();
+
 
 // middleware
 app.use(cors());
@@ -26,5 +29,4 @@ async function startServer() {
     console.log("Error starting server", err);
   }
 }
-
 startServer();
