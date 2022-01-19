@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const todoController = require("../controllers/todos");
 
-router.get("/", (req, res) => {
-    res.send("gigity")
-})
+router.get("/", todoController.getTodos);
 
 module.exports = router; 
