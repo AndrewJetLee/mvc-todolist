@@ -17,5 +17,13 @@ module.exports = {
         } catch (err) {
             res.status(500).send(err);
         }
-    } 
-}
+    },
+    deleteTodo: async (req, res) => {
+        try {
+            await Todo.deleteOne({_id: req.body.todoId});
+            res.status(200).send("Successfully Deleted Todo with id" + req.body.todoId);
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    }
+} 

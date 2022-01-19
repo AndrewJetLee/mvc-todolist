@@ -10,7 +10,7 @@
 <body>
     <h1>Todos</h1>
     <% todos.forEach((todo) => { %>
-        <li>
+        <li data-id=<%= todo._id %>>
             <span><%= todo.todo %></span>
             <span class="del">delete</span>
         </li>
@@ -21,6 +21,6 @@
         <input type="text" name="todo" placeholder="Enter Todo Item">
         <button>Submit</button>
     </form>
-
+    <script src="/js/index.js"></script>
 </body>
 </html>
