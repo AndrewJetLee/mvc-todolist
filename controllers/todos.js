@@ -26,9 +26,17 @@ module.exports = {
             res.status(500).send(err);
         }
     }, 
-    updateTodo: async (req, res) => {
+    markComplete: async (req, res) => {
         try {
             await Todo.updateOne({_id: req.body.todoId}, {completed: true});
+            res.status(200).send("Successfully Updated Todo with id" + req.body.todoId);
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    },
+    markIncomplete: async (req, res) => {
+        try {
+            await Todo.updateOne({_id: req.body.todoId}, {completed: false});
             res.status(200).send("Successfully Updated Todo with id" + req.body.todoId);
         } catch (err) {
             res.status(500).send(err);

@@ -25,13 +25,35 @@ async function deleteTodo () {
 let incompleteTodos = [...document.querySelectorAll(".incomplete")];
 
 incompleteTodos.forEach((todo) => {
-    todo.addEventListener("click", updateTodo);
+    todo.addEventListener("click", markComplete);
 })
 
-async function updateTodo () {
+async function markComplete () {
     let todoId = this.parentNode.dataset.id; 
     try {
-        await fetch("/todos/updateTodo", {
+        await fetch("/todos/markComplete", {
+            method: "PUT",
+            body: JSON.stringify({todoId: todoId}),
+            headers: {
+                'Content-type': 'application/json'
+               }
+        })
+        location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+let completeTodos = [...document.querySelectorAll(".completed")];
+
+completeTodos.forEach((todo) => {
+    todo.addEventListener("click", markIncomplete);
+})
+
+async function markIncomplete () {
+    let todoId = this.parentNode.dataset.id; 
+    try {
+        await fetch("/todos/markIncomplete", {
             method: "PUT",
             body: JSON.stringify({todoId: todoId}),
             headers: {
