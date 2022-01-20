@@ -2,3 +2,10 @@ h1 {
     color: red; 
 }
 
+.completed {
+    text-decoration: line-through;   
+}
+
+.incomplete {
+    text-decoration: underline; 
+}

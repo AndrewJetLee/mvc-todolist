@@ -21,3 +21,25 @@ async function deleteTodo () {
         console.log(err);
     }
 }
+
+let incompleteTodos = [...document.querySelectorAll(".incomplete")];
+
+incompleteTodos.forEach((todo) => {
+    todo.addEventListener("click", updateTodo);
+})
+
+async function updateTodo () {
+    let todoId = this.parentNode.dataset.id; 
+    try {
+        await fetch("/todos/updateTodo", {
+            method: "PUT",
+            body: JSON.stringify({todoId: todoId}),
+            headers: {
+                'Content-type': 'application/json'
+               }
+        })
+        location.reload();
+    } catch (err) {
+        console.log(err);
+    }
+}
